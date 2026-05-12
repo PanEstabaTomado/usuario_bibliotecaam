@@ -14,6 +14,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioRequestDTO {
+
+
     @Positive(message = "El numero de rut no puede ser 0 o negativo.")
     @NotNull(message = "El numero de rut no puede estar vacio.")
     private Integer numrunUsu;
