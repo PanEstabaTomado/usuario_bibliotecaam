@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUsuario;
 
     @Column(nullable = false,precision = 8)
     private Integer numrunUsu;

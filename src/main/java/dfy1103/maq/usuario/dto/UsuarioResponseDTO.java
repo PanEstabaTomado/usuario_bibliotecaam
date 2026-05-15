@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioResponseDTO {
-    private Long id;
+    private Long idUsuario;
 
     private Integer numrunUsu;
 

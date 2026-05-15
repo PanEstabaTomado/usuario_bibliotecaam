@@ -20,7 +20,7 @@ public class UsuarioService {
 
     private UsuarioResponseDTO mapToDTO(Usuario usuario){
         return new UsuarioResponseDTO(
-                usuario.getId(),
+                usuario.getIdUsuario(),
                 usuario.getNumrunUsu(),
                 usuario.getDvrunUsu(),
                 usuario.getPnombreUsu(),
