@@ -19,16 +19,30 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
     private UsuarioResponseDTO mapToDTO(Usuario usuario){
-        return new UsuarioResponseDTO(
-                usuario.getIdUsuario(),
-                usuario.getNumrunUsu(),
-                usuario.getDvrunUsu(),
-                usuario.getPnombreUsu(),
-                usuario.getSnombreUsu(),
-                usuario.getAppaternoUsu(),
-                usuario.getApmaternoUsu(),
-                usuario.getFechaNacUsu()
-        );
+        if (usuario.getSnombreUsu() == null) {
+            String tieneSegundoNombre = "No tiene segundo nombre.";
+            return new UsuarioResponseDTO(
+                    usuario.getIdUsuario(),
+                    usuario.getNumrunUsu(),
+                    usuario.getDvrunUsu(),
+                    usuario.getPnombreUsu(),
+                    tieneSegundoNombre,
+                    usuario.getAppaternoUsu(),
+                    usuario.getApmaternoUsu(),
+                    usuario.getFechaNacUsu()
+            );
+        } else {
+            return new UsuarioResponseDTO(
+                    usuario.getIdUsuario(),
+                    usuario.getNumrunUsu(),
+                    usuario.getDvrunUsu(),
+                    usuario.getPnombreUsu(),
+                    usuario.getSnombreUsu(),
+                    usuario.getAppaternoUsu(),
+                    usuario.getApmaternoUsu(),
+                    usuario.getFechaNacUsu());
+        }
+
     }
 
     public List<UsuarioResponseDTO> obtenerTodos(){
