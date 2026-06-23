@@ -18,10 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -93,12 +96,15 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200",description = "¡Usuario eliminado con exito!"),
             @ApiResponse(responseCode = "404",description = "ERROR: ¡El id del usuario ingresado no existe!")
     })
-    public ResponseEntity<Void> eliminar(@PathVariable Long id){
+    public ResponseEntity<Map<String,String>> eliminar(@PathVariable Long id){
         if (usuarioService.buscarPorId(id).isEmpty()){
-            return ResponseEntity.notFound().build();
+            Map<String, String> borrado = new LinkedHashMap<>();
+            borrado.put("¡ERROR! ", "¡El usuario con id "+id+" no fue encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(borrado);
         } else {
-            usuarioService.eliminar(id);
-            return ResponseEntity.noContent().build();
+            Map<String, String> borrado = new LinkedHashMap<>();
+            borrado.put("¡EXITO! ", "¡El usuario fue eliminado con exito!");
+            return ResponseEntity.status(HttpStatus.OK).body(borrado);
         }
     }
 }
